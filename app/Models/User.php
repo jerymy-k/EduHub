@@ -39,7 +39,7 @@ class User extends Authenticatable
     }
     public function classesAsStudent(): BelongsToMany
     {
-        return $this->belongsToMany(SchoolClass::class, 'class_student', 'student_id', 'class_id');
+        return $this->belongsToMany(SchoolClass::class, 'class_student', 'student_id', 'class_id')->where('classes.year', now()->year);
     }
 
     public function childrenAsParent(): BelongsToMany
@@ -47,6 +47,11 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'parent_student', 'parent_id', 'student_id');
     }
 
+    public function parentOfChild()
+    {
+        return $this->belongsToMany(User::class, 'parent_student', 'student_id', 'parent_id');
+    }
+    
     public function activitiesAsTeacher(): HasMany
     {
         return $this->hasMany(Activity::class, 'teacher_id');

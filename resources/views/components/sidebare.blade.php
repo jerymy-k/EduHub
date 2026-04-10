@@ -89,22 +89,25 @@
         @endif
 
         @if ($role === 'teacher')
-            <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Ma Classe</p>
-            <a href="/teacher/absences"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-user-check w-5 text-emerald-400"></i>
-                <span>Faire l'appel</span>
-            </a>
-            <a href="/teacher/grades"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-pen-fancy w-5 text-emerald-400"></i>
-                <span>Gestion des notes</span>
-            </a>
-            <a href="/teacher/messages"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-envelope-open-text w-5 text-emerald-400"></i>
-                <span>Contacter Parents</span>
-            </a>
+        <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Ma Classe</p>
+
+        <a href="{{ route('absences.index') }}"
+            class="flex items-center space-x-3 p-3 rounded-lg {{ Request::is('teacher/absences*') ? 'bg-emerald-800 shadow-inner' : 'hover:bg-emerald-800/50 transition' }}">
+            <i class="fas fa-clipboard-check w-5 text-emerald-400"></i>
+            <span>Faire l'appel</span>
+        </a>
+
+        <a href="{{ route('grades.index') }}"
+            class="flex items-center space-x-3 p-3 rounded-lg {{ Request::is('teacher/grades*') ? 'bg-emerald-800 shadow-inner' : 'hover:bg-emerald-800/50 transition' }}">
+            <i class="fas fa-file-invoice w-5 text-emerald-400"></i>
+            <span>Gestion des notes</span>
+        </a>
+
+        <a href="/teacher/messages"
+            class="flex items-center space-x-3 p-3 rounded-lg {{ Request::is('teacher/messages*') ? 'bg-emerald-800 shadow-inner' : 'hover:bg-emerald-800/50 transition' }}">
+            <i class="fas fa-comments w-5 text-emerald-400"></i>
+            <span>Contacter Parents</span>
+        </a>
         @endif
 
         @if ($role === 'parent')
@@ -121,22 +124,17 @@
             </a>
         @endif
 
-        @if ($role === 'student')
-            <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Scolarité</p>
-            <a href="/student/grades"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-star w-5 text-emerald-400"></i>
-                <span>Mes Notes</span>
-            </a>
-        @endif
-        @if ($role != 'admin')
-            <a href="/student/absences"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-calendar-times w-5 text-emerald-400"></i>
-                <span>Mes Absences</span>
-        @endif
-        </a>
-
+       @if ($role === 'student')
+    <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Scolarité</p>
+    <a href="/student/grades" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+        <i class="fas fa-star w-5 text-emerald-400"></i>
+        <span>Mes Notes</span>
+    </a>
+    <a href="/student/absences" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+        <i class="fas fa-calendar-times w-5 text-emerald-400"></i>
+        <span>Mes Absences</span>
+    </a>
+@endif
     </nav>
 
     <div class="p-4 border-t border-emerald-900 bg-black/10">

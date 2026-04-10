@@ -13,6 +13,7 @@ class Justification extends Model
     protected $fillable = [
         'absence_id',
         'submitted_by',
+        'document_path',
     ];
 
     public function absence(): BelongsTo

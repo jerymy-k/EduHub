@@ -14,10 +14,15 @@ class Grade extends Model
         'student_id',
         'activity_id',
         'score',
+        'type',
+        'date',
     ];
+
+    // app/Models/Grade.php
 
     protected $casts = [
         'score' => 'float',
+        'date' => 'date', // This tells Laravel to convert the string to a Carbon object
     ];
 
     public function student(): BelongsTo

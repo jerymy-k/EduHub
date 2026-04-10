@@ -16,6 +16,7 @@ class Absence extends Model
         'student_id',
         'teacher_id',
         'date',
+        'status',
     ];
 
     protected $casts = [

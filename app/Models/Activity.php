@@ -15,6 +15,10 @@ class Activity extends Model
         'class_id',
         'teacher_id',
         'title',
+        'type',
+        'date',
+        'max_score',
+
     ];
 
     public function class_(): BelongsTo

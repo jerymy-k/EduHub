@@ -22,12 +22,12 @@
     }
 </style>
 @php
-    $user = Auth::user();
-    $role = $user->role;
+$user = Auth::user();
+$role = $user->role;
 @endphp
 <aside class="w-80 bg-edu-sidebar text-white flex-shrink-0 hidden md:flex flex-col h-full">
     <div class="p-6 flex items-center space-x-3 border-b border-emerald-900/50">
-            <img src="{{ asset('favicon.ico') }}" alt="" class="h-16 rounded-lg">
+        <img src="{{ asset('favicon.ico') }}" alt="" class="h-16 rounded-lg">
         <span class="text-2xl font-bold tracking-wider italic">EDUHUB</span>
     </div>
 
@@ -46,35 +46,31 @@
         </a>
 
         @if ($role === 'admin')
-            <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Gestion Système
-            </p>
-            <a href="/admin/teachers"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-chalkboard-teacher w-5 text-emerald-400"></i>
-                <span>Teachers</span>
-            </a>
-            <a href="/admin/students"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-user-graduate w-5 text-emerald-400 text-center"></i>
-                <span class="text-gray-100 font-medium">Students</span>
-            </a>
-            <a href="/admin/classes"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-chalkboard w-5 text-emerald-400 text-center"></i>
-                <span class="text-gray-100 font-medium">Classes</span>
-            </a>
-            <a href="/admin/parents"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-user-friends w-5 text-emerald-400 text-center"></i>
-                <span class="text-gray-100 font-medium">Parents</span>
-            </a>
-            <a href="/admin/justifications"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition flex justify-between items-center">
-                <div class="flex items-center space-x-3">
-                    <i class="fas fa-file-circle-check w-5 text-emerald-400"></i>
-                    <span>Justificatifs</span>
-                </div>
-            </a>
+        <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Gestion Système
+        </p>
+        <a href="/admin/teachers" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+            <i class="fas fa-chalkboard-teacher w-5 text-emerald-400"></i>
+            <span>Teachers</span>
+        </a>
+        <a href="/admin/students" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+            <i class="fas fa-user-graduate w-5 text-emerald-400 text-center"></i>
+            <span class="text-gray-100 font-medium">Students</span>
+        </a>
+        <a href="/admin/classes" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+            <i class="fas fa-chalkboard w-5 text-emerald-400 text-center"></i>
+            <span class="text-gray-100 font-medium">Classes</span>
+        </a>
+        <a href="/admin/parents" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+            <i class="fas fa-user-friends w-5 text-emerald-400 text-center"></i>
+            <span class="text-gray-100 font-medium">Parents</span>
+        </a>
+        <a href="/admin/justifications"
+            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fas fa-file-circle-check w-5 text-emerald-400"></i>
+                <span>Justificatifs</span>
+            </div>
+        </a>
         @endif
 
         @if ($role === 'teacher')
@@ -100,25 +96,26 @@
         @endif
 
         @if ($role === 'parent')
-            <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Suivi Enfants</p>
-            <a href="/parent/children"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-users w-5 text-emerald-400"></i>
-                <span>Mes Enfants</span>
-            </a>
+        <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Suivi Enfants</p>
+        <a href="/parent/children"
+            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+            <i class="fas fa-users w-5 text-emerald-400"></i>
+            <span>Mes Enfants</span>
+        </a>
         @endif
 
-       @if ($role === 'student')
-    <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Scolarité</p>
-    <a href="/student/grades" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-        <i class="fas fa-star w-5 text-emerald-400"></i>
-        <span>Mes Notes</span>
-    </a>
-    <a href="/student/absences" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-        <i class="fas fa-calendar-times w-5 text-emerald-400"></i>
-        <span>Mes Absences</span>
-    </a>
-@endif
+        @if ($role === 'student')
+        <p class="text-[10px] uppercase text-emerald-500 font-bold px-3 mt-6 mb-2 tracking-widest">Scolarité</p>
+        <a href="/student/grades" class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+            <i class="fas fa-star w-5 text-emerald-400"></i>
+            <span>Mes Notes</span>
+        </a>
+        <a href="/student/absences"
+            class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
+            <i class="fas fa-calendar-times w-5 text-emerald-400"></i>
+            <span>Mes Absences</span>
+        </a>
+        @endif
     </nav>
 
     <div class="p-4 border-t border-emerald-900 bg-black/10">

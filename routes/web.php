@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\ClasseController;
@@ -20,6 +19,16 @@ use App\Http\Middleware\Parents;
 
 Route::get('/', function () {
     return view('auth/login');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 });
 
 Route::middleware(['auth', Admin::class])->group(function () {
@@ -47,15 +56,6 @@ Route::middleware(['auth', Admin::class])->group(function () {
     Route::patch('admin/justifications/{justification}', [AdminController::class, 'updateJustification'])->name('admin.justifications.update');
 });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-});
 Route::middleware(['auth', Teacher::class])->group(function () {
     Route::get('teacher/absences', [AbsenceController::class, 'index'])->name('absences.index');
     Route::post('teacher/add-absence', [AbsenceController::class, 'store'])->name('absence.add');
@@ -75,11 +75,13 @@ Route::middleware(['auth', Parents::class])->group(function () {
     Route::post('/absence/{absence}/justify', [ParentsController::class, 'storeJustification'])->name('parent.absence.justify');
 
 });
+
 Route::middleware(['auth', Student::class])->group(function () {
     Route::get('/student/grades', [StudentsController::class, 'myGrades'])->name('student.grades');
     Route::get('/student/absences', [StudentsController::class, 'myAbsences'])->name('student.absences');
 
-    });
+});
+
 Route::fallback(function () {
     return view('404');
 });

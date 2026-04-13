@@ -1,15 +1,12 @@
 <style>
-    /* Personnalisation Dark Green */
     .bg-edu-dark {
         background-color: #064e3b;
     }
 
-    /* Emerald 900 */
     .bg-edu-sidebar {
         background-color: #022c22;
     }
 
-    /* Emerald 950 */
     .text-edu-light {
         color: #ecfdf5;
     }
@@ -108,11 +105,6 @@
                 class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
                 <i class="fas fa-users w-5 text-emerald-400"></i>
                 <span>Mes Enfants</span>
-            </a>
-            <a href="/parent/alerts"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-exclamation-triangle w-5 text-emerald-400"></i>
-                <span>Alertes Absences</span>
             </a>
         @endif
 

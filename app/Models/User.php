@@ -51,7 +51,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(User::class, 'parent_student', 'student_id', 'parent_id');
     }
-    
+
     public function activitiesAsTeacher(): HasMany
     {
         return $this->hasMany(Activity::class, 'teacher_id');
@@ -76,4 +76,5 @@ class User extends Authenticatable
     {
         return $this->hasMany(Justification::class, 'submitted_by');
     }
+
 }

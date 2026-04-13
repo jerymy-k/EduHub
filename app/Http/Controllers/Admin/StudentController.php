@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\DB;
 
-class StudentController 
+class StudentController
 {
     public function index () {
         $students = User::where('role' , 'student')->with('classesAsStudent')->get();
@@ -23,6 +23,9 @@ class StudentController
             'name' => ['required', 'string', 'max:20', 'min:4'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:100', 'unique:' . User::class],
             'password' => ['required', 'string', 'min:8', Password::default()],
+            'classe_id' => ['required ', 'exists:classes,id'],
+        ],[
+            'classe_id'=> 'Create a classe first to add student',
         ]);
 
         $user = User::create([

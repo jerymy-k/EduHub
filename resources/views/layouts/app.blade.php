@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'EDUHUB') }}</title>
-
+    <link rel="icon"  href="{{ asset('favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -48,22 +48,16 @@
         </aside>
         <div class="lg:ml-72">
             @if (isset($header))
-                <header
-                    class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-sm h-20 flex items-center px-6 lg:px-8">
-                    <div class="w-full max-w-7xl mx-auto flex justify-between items-center">
-                        {{ $header }}
-                        <div class="flex items-center space-x-4 text-gray-500">
-                            <i
-                                class="fas fa-search text-xl hover:text-emerald-600 cursor-pointer transition p-1 rounded-lg hover:bg-gray-100"></i>
-                            <i
-                                class="fas fa-bell text-xl hover:text-emerald-600 cursor-pointer transition p-1 rounded-lg hover:bg-gray-100"></i>
-                        </div>
-                    </div>
-                </header>
+            <header
+                class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-sm h-20 flex items-center px-6 lg:px-8">
+                <div class="w-full max-w-7xl mx-auto flex justify-between items-center">
+                    {{ $header }}
+                </div>
+            </header>
             @endif
 
-            <main class="flex-1 p-6 lg:p-8">
-                <div class="max-w-7xl mx-auto">
+            <main class="flex-1">
+                <div class="">
                     {{ $slot }}
                 </div>
             </main>

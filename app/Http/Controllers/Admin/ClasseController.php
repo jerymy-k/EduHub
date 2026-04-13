@@ -29,6 +29,8 @@ class ClasseController
         $request->validate([
             'class_name' => 'required|string|max:255',
             'teacher_id' => 'required|exists:users,id',
+        ],[
+            'teacher_id'=> 'Add a teacher first to create a classe',
         ]);
 
         $classe = SchoolClass::create([

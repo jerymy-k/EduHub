@@ -28,11 +28,9 @@
     $user = Auth::user();
     $role = $user->role;
 @endphp
-<aside class="w-80 bg-edu-sidebar text-white flex-shrink-0 hidden md:flex flex-col h-full ">
+<aside class="w-80 bg-edu-sidebar text-white flex-shrink-0 hidden md:flex flex-col h-full">
     <div class="p-6 flex items-center space-x-3 border-b border-emerald-900/50">
-        <div class="bg-emerald-500 p-2 rounded-lg shadow-lg shadow-emerald-900/20">
-            <i class="fas fa-graduation-cap text-white text-xl"></i>
-        </div>
+            <img src="{{ asset('favicon.ico') }}" alt="" class="h-16 rounded-lg">
         <span class="text-2xl font-bold tracking-wider italic">EDUHUB</span>
     </div>
 
@@ -79,12 +77,6 @@
                     <i class="fas fa-file-circle-check w-5 text-emerald-400"></i>
                     <span>Justificatifs</span>
                 </div>
-                <span class="bg-red-500 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-sm">12</span>
-            </a>
-            <a href="/admin/settings"
-                class="flex items-center space-x-3 p-3 rounded-lg hover:bg-emerald-800/50 transition">
-                <i class="fas fa-sliders-h w-5 text-emerald-400"></i>
-                <span>Configuration</span>
             </a>
         @endif
 

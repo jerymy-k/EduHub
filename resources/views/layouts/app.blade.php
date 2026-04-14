@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'EDUHUB') }}</title>
-    <link rel="icon"  href="{{ asset('favicon.ico') }}">
+    <link rel="icon" href="{{ asset('favicon.ico') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -16,7 +16,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <style>
-        /* Custom Scrollbar pour le look Premium */
         ::-webkit-scrollbar {
             width: 5px;
         }
@@ -43,9 +42,9 @@
 <body class="font-sans antialiased text-gray-900 bg-eduhub-main">
 
     <div class="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-slate-100">
-        <aside class="hidden lg:block fixed left-0 top-0 h-full z-40 w-72">
-            @include('components.sidebare')
-        </aside>
+
+        @include('components.sidebare')
+
         <div class="lg:ml-72">
             @if (isset($header))
             <header
@@ -58,7 +57,7 @@
 
             <main class="flex-1">
                 <div class="">
-                    {{ $slot }}
+                   {{ $slot }}
                 </div>
             </main>
         </div>

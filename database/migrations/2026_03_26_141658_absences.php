@@ -17,7 +17,7 @@ return new class extends Migration
             $table->enum('status', [
                 'unexcused',   // Non justifiée
                 'pending',     // En attente
-                'justified',   // Justifiée
+                'approved',   // Justifiée
                 'refused',     // Refusée
             ])->default('unexcused');
             $table->timestamps();

@@ -1,0 +1,17 @@
+
+.button-primary {
+    background-color: #064e3b !important; /* Emerald dial EduHub */
+    border-top: 10px solid #064e3b !important;
+    border-right: 18px solid #064e3b !important;
+    border-bottom: 10px solid #064e3b !important;
+    border-left: 18px solid #064e3b !important;
+}
+
+.header a {
+    color: #064e3b !important;
+    font-size: 19px;
+    font-weight: bold;
+}
+a{
+    color:white;
+}

@@ -26,12 +26,14 @@ Route::middleware('auth')->group(function () {
         return view('dashboard');
     })->name('dashboard');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
 });
 
 Route::middleware(['auth', Admin::class])->group(function () {
+
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
     Route::get('/admin/teachers', [TeacherController::class, 'index']);
     Route::post('/admin/teacher-add', [TeacherController::class, 'store'])->name('teacher-add');
     Route::post('/admin/teacher-edit', [TeacherController::class, 'edit'])->name('teacher-edit');

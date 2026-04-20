@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'EDUHUB') }}</title>
-    <link rel="icon" href="{{ asset('favicon.ico') }}">
-    <link rel="preconnect" href="https://fonts.bunny.net">
+    <title>{{ config('app.name', 'EDUHUB') .' - '. ucfirst((explode('/',Request::path())[1] ??
+        explode('/',Request::path())[0]))}}</title>
+<link rel="icon" type="image/png" sizes="32x32" href="{{ asset('logo.png') }}">    <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -57,7 +57,7 @@
 
             <main class="flex-1">
                 <div class="">
-                   {{ $slot }}
+                    {{ $slot }}
                 </div>
             </main>
         </div>

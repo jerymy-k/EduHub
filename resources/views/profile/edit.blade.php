@@ -170,5 +170,5 @@
             </div>
         </form>
     </x-modal>
-    @endif
+        @endif
 </x-app-layout>

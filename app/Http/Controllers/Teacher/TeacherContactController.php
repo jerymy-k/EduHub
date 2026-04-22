@@ -22,7 +22,9 @@ class TeacherContactController
         })
             ->with('parentOfChild') // Using your defined inverse relationship
             ->get();
-        // dd($students);
+        if ($students->isEmpty()) {
+            return redirect()->back()->with('error', 'You are not assigned to any class.');
+        }
         return view('teacher.contact.index', compact('students'));
     }
 

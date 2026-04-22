@@ -41,7 +41,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 <span
-                                    class="px-2 py-1 rounded text-[10px] font-bold uppercase {{ $absence->status == 'unexcused' ? 'bg-red-100 text-red-600' : 'bg-blue-100 text-blue-600' }}">
+                                    class="px-2 py-1 rounded text-[10px] font-bold uppercase {{ $absence->status == 'unexcused'? 'bg-red-100 text-red-600' : 'bg-blue-100 text-blue-600' }}">
                                     {{ $absence->status }}
                                 </span>
                             </td>
@@ -63,26 +63,63 @@
                         </tr>
 
                         <x-modal name="justify-{{ $absence->id }}">
-                            <form action="{{ route('parent.absence.justify', $absence->id) }}" method="POST"
-                                enctype="multipart/form-data" class="p-6">
-                                @csrf
-                                <h3 class="text-lg font-bold mb-4">Justifier l'absence du {{ $absence->date }}</h3>
-                                <div class="space-y-4">
+                            <div class="p-8 w-full max-w-[420px] mx-auto rounded-none bg-white shadow-2xl">
+
+                                <div class="flex items-center justify-between mb-8 pb-6 border-b border-slate-100">
                                     <div>
-                                        <label class="block text-xs font-bold text-gray-500 uppercase">Motif</label>
-                                        <textarea name="reason" required
-                                            class="w-full border-gray-200 rounded-xl mt-1"></textarea>
+                                        <p class="text-[10px] font-black text-emerald-800 uppercase tracking-[0.4em] mb-1">
+                                            Absence • {{ $absence->date }}
+                                        </p>
+                                        <h3 class="text-2xl font-black text-[#064e3b] tracking-tighter leading-tight">
+                                            Justifier l'absence
+                                        </h3>
                                     </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-gray-500 uppercase">Document (PDF,
-                                            Image)</label>
-                                        <input type="file" name="document" required class="w-full mt-1">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center font-black text-emerald-500 text-sm">
+                                        PDF
                                     </div>
-                                    <button type="submit"
-                                        class="w-full bg-[#064e3b] text-white py-3 rounded-xl font-bold shadow-lg">Envoyer
-                                        le justificatif</button>
                                 </div>
-                            </form>
+
+                                <form action="{{ route('parent.absence.justify', $absence->id) }}" method="POST" enctype="multipart/form-data"
+                                    class="flex flex-col gap-6">
+                                    @csrf
+
+                                    <div>
+                                        <label for="reason-{{ $absence->id }}"
+                                            class="block text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-2">
+                                            Motif de l'absence
+                                        </label>
+                                        <textarea id="reason-{{ $absence->id }}" name="reason" rows="3" required
+                                            placeholder="Ex: Maladie, rendez-vous médical, raison familiale..."
+                                            class="w-full border border-slate-200 rounded-none px-4 py-3 text-md text-black font-medium bg-white resize-none focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 placeholder:text-slate-300"></textarea>
+                                    </div>
+
+                                    <div x-data="{ fileName: '' }">
+                                        <label class="block text-[10px] font-black text-slate-500 uppercase tracking-[0.4em] mb-2">
+                                            Document justificatif
+                                        </label>
+
+                                        <label
+                                            class="flex items-center gap-4 border border-dashed border-slate-300 rounded-none px-5 py-4 cursor-pointer bg-white hover:border-emerald-400 hover:bg-emerald-50 transition-colors">
+
+                                            <span class="material-symbols-outlined text-emerald-500 text-lg">upload</span>
+
+                                            <div class="flex-1">
+                                                <p class="text-sm font-bold text-[#064e3b]" x-text="fileName || 'Choisir un fichier'"></p>
+                                                <p class="text-[10px] text-slate-400 font-medium">PDF, JPG, PNG — max 5 Mo</p>
+                                            </div>
+
+                                            <input type="file" name="document" required accept=".pdf,.jpg,.jpeg,.png" class="hidden"
+                                                @change="fileName = $event.target.files[0].name">
+                                        </label>
+                                    </div>
+
+                                    <button type="submit"
+                                        class="w-full bg-[#064e3b] text-white rounded-none py-4 text-xs font-black uppercase tracking-[0.3em] transition-all hover:bg-emerald-600 hover:shadow-2xl hover:shadow-emerald-900/10 hover:-translate-y-0.5">
+                                        Envoyer le justificatif
+                                    </button>
+                                </form>
+                            </div>
                         </x-modal>
                         @endforeach
                     </tbody>

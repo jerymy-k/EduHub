@@ -19,7 +19,9 @@ class GradeController
 
         // Get classes assigned to this teacher
         $classes = $teacher->classesAsTeacher()->get();
-
+        if ($classes->isEmpty()){
+            return redirect()->back()->with('error', 'You are not assigned to any class.');
+        }
         // Get activities created by this teacher with their class info
         $activities = Activity::where('teacher_id', $teacher->id)
             ->with('class_')

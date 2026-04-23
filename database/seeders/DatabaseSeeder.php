@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
-            'password' => Hash::make('password123'), // default password
+            'password' => Hash::make('password123'),
             'role' => 'admin',
             'phone' => null,
             'profile_photo' => null,

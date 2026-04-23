@@ -14,7 +14,6 @@ class StudentController
     public function index () {
         $students = User::where('role' , 'student')->with('classesAsStudent')->get();
         $classes = SchoolClass::all();
-        // dd($students);
         return view('admin/student' , compact('classes' , 'students'));
     }
     public function store(Request $request)

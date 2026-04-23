@@ -45,7 +45,7 @@
                             <td class="px-6 py-4 font-bold text-gray-800">{{ $activity->title }}</td>
                             <td class="px-6 py-4 text-gray-600">{{ $activity->class_->name }}</td>
                             <td class="px-6 py-4 italic text-sm">{{ $activity->type }}</td>
-                            <td class="px-6 py-4 font-mono text-emerald-700">/{{ $activity->max_score }}</td>
+                            <td class="px-6 py-4 font-mono text-emerald-700">{{ $activity->max_score }}</td>
                             <td class="px-6 py-4 text-center">
                                 <a href="{{ route('grades.enter', $activity->id) }}"
                                     class="text-[#064e3b] hover:underline font-bold text-sm flex items-center justify-center">

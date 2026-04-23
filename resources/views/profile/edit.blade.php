@@ -124,7 +124,7 @@
                     </div>
                 </div>
             </div>
-
+            @if ($role === 'admin')
             <div
                 class="bg-white shadow-xl shadow-red-900/5 rounded-3xl overflow-hidden border border-red-100 transition hover:shadow-red-900/10">
                 <div class="md:flex">
@@ -149,7 +149,6 @@
         </div>
     </div>
 
-    @if ($role === 'admin')
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
         <form method="post" action="{{ route('profile.destroy') }}" class="p-8 bg-white rounded-3xl">
             @csrf
@@ -171,5 +170,5 @@
             </div>
         </form>
     </x-modal>
-    @endif
+        @endif
 </x-app-layout>

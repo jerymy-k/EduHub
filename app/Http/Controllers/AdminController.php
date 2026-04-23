@@ -9,7 +9,6 @@ class AdminController extends Controller
 {
     public function indexJustifications()
     {
-        // Get all justifications with student and absence details
         $justifications = Justification::with(['absence.student', 'absence.class_'])
             ->orderBy('created_at', 'desc')
             ->get();

@@ -1,11 +1,16 @@
 <x-app-layout>
+    @if (session('error'))
+    <div class="p-4 bg-red-50 border-l-4 border-red-500 text-red-700 shadow-sm rounded-r-lg">
+        <ul class="list-disc list-inside text-sm">
+            <li>{{ session('error') }}</li>
+        </ul>
+    </div>
+    @endif
     <div class="relative h-[100vh] w-full overflow-hidden">
-
         <div class="absolute inset-0 z-0">
             <img src="{{ asset('images/campus.png') }}" class="w-full h-full object-cover" alt="EduHub Campus">
             <div class="absolute inset-0 bg-gradient-to-t from-[#064e3b] via-[#064e3b]/80 to-black/40 h-[100vh]"></div>
         </div>
-
         <div class="flex justify-center items-center border border-black w-full h-[65vh]">
             <div class="relative z-10 h-full flex flex-col items-center justify-end px-6 text-center">
 

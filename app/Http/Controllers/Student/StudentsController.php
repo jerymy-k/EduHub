@@ -25,7 +25,6 @@ class StudentsController
             ->orderBy('date', 'desc')
             ->get();
 
-        // Calculate overall average if needed
         $average = $grades->avg('score');
 
         return view('student.grade.index', compact('grades', 'average'));
@@ -34,13 +33,11 @@ class StudentsController
     {
         $student = Auth::user();
 
-        // Fetch all absences for this student with class and teacher details
         $absences = Absence::where('student_id', $student->id)
             ->with(['class_', 'teacher'])
             ->orderBy('date', 'desc')
             ->get();
 
-        // Calculate some stats for the header
         $totalAbsences = $absences->count();
         $unexcusedCount = $absences->where('status', 'unexcused')->count();
 

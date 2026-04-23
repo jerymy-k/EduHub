@@ -15,8 +15,6 @@ class TeacherContactController
         /** @var User $teacher */
         $teacher = Auth::user();
 
-        // 1. Get all students belonging to the classes this teacher teaches
-// Using your classesAsTeacher relationship defined in User model
         $students = User::whereHas('classesAsStudent', function ($query) use ($teacher) {
             $query->whereIn('classes.id', $teacher->classesAsTeacher->pluck('id'));
         })
@@ -38,7 +36,6 @@ class TeacherContactController
 
         $student = User::with('parentOfChild')->findOrFail($request->student_id);
 
-        // 2. Access the parent via your parentOfChild() relationship
         $parent = $student->parentOfChild->first();
 
         if (!$parent || !$parent->email) {
@@ -46,14 +43,12 @@ class TeacherContactController
         }
 
         try {
-            // 3. Send the Email
             Mail::to($parent->email)->send(new ParentContactMail(
                 $request->subject,
                 $request->message,
                 Auth::user()->name
             ));
 
-            // 4. Log the manual email in your email_logs table
             EmailLog::create([
                 'sender_id' => Auth::id(),
                 'recipient_id' => $parent->id,

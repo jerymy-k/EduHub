@@ -4,25 +4,21 @@ namespace App\Http\Controllers\Teacher;
 
 use App\Models\Activity;
 use App\Models\Grade;
-use App\Models\SchoolClass;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class GradeController
 {
-    /**
-     * Show the grades management dashboard for the teacher.
-     */
     public function index()
     {
-        $teacher = Auth::user();
+        $auth = Auth::user();
+        $teacher = User::find($auth->id);
 
-        // Get classes assigned to this teacher
         $classes = $teacher->classesAsTeacher()->get();
         if ($classes->isEmpty()){
             return redirect()->back()->with('error', 'You are not assigned to any class.');
         }
-        // Get activities created by this teacher with their class info
         $activities = Activity::where('teacher_id', $teacher->id)
             ->with('class_')
             ->latest()
@@ -31,9 +27,6 @@ class GradeController
         return view('teacher.grade.index', compact('classes', 'activities'));
     }
 
-    /**
-     * Step 1: Create a new Activity (Exam/Quiz).
-     */
     public function storeActivity(Request $request)
     {
         $request->validate([
@@ -56,14 +49,10 @@ class GradeController
         return redirect()->back()->with('success', 'Activity created! You can now enter grades.');
     }
 
-    /**
-     * Step 2: Show the entry form for a specific activity's grades.
-     */
     public function enterGrades($activityId)
     {
         $activity = Activity::with(['class_.students', 'grades'])->findOrFail($activityId);
 
-        // Ensure this teacher owns the activity
         if ($activity->teacher_id !== Auth::id()) {
             abort(403);
         }
@@ -71,9 +60,6 @@ class GradeController
         return view('teacher.grade.enter', compact('activity'));
     }
 
-    /**
-     * Save the scores for all students.
-     */
     public function storeGrades(Request $request, $activityId)
     {
         $activity = Activity::findOrFail($activityId);

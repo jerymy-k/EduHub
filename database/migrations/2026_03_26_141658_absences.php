@@ -15,10 +15,10 @@ return new class extends Migration
             $table->foreignId('class_id')->constrained('classes')->cascadeOnDelete();
             $table->date('date');
             $table->enum('status', [
-                'unexcused',   // Non justifiée
-                'pending',     // En attente
-                'approved',   // Justifiée
-                'refused',     // Refusée
+                'unexcused',
+                'pending',
+                'approved',
+                'refused',    
             ])->default('unexcused');
             $table->timestamps();
         });

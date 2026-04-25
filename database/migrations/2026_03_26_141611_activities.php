@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('teacher_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('class_id')->constrained('classes')->cascadeOnDelete();
             $table->string('title');
-            $table->string('type'); // e.g. 'exam', 'quiz', 'homework', 'oral'
+            $table->string('type'); 
             $table->date('date');
             $table->float('max_score');
             $table->timestamps();

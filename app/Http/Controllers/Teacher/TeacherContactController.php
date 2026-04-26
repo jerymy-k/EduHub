@@ -18,7 +18,7 @@ class TeacherContactController
         $students = User::whereHas('classesAsStudent', function ($query) use ($teacher) {
             $query->whereIn('classes.id', $teacher->classesAsTeacher->pluck('id'));
         })
-            ->with('parentOfChild') // Using your defined inverse relationship
+            ->with('parentOfChild') 
             ->get();
         if ($students->isEmpty()) {
             return redirect()->back()->with('error', 'You are not assigned to any class.');

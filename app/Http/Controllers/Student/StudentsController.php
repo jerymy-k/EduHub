@@ -15,7 +15,6 @@ class StudentsController
     {
         $student = Auth::user();
 
-        // Fetch grades with their associated activity and teacher info
         $grades = Grade::where('student_id', $student->id)
             ->with([
                 'activity' => function ($query) {

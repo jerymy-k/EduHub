@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('document_path');
             $table->text('description')->nullable();
             $table->enum('status', [
-                'pending',   // En attente
-                'approved',  // Validée
-                'refused',   // Refusée
+                'pending',
+                'approved',
+                'refused',   
             ])->default('pending');
             $table->text('review_comment')->nullable();
             $table->timestamp('submitted_at')->useCurrent();

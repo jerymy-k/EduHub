@@ -17,7 +17,6 @@ return new class extends Migration
             $table->text('comment')->nullable();
             $table->timestamps();
 
-            // A student can only have one grade per activity
             $table->unique(['student_id', 'activity_id']);
         });
     }
